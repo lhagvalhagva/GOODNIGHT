@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Good Night Greetings</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        background-size: cover;
+        background-position: center;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 80%;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      h1 {
+        font-size: 2em;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      p {
+        font-size: 1em;
+        color: #666;
+        margin-top: 10px;
+      }
+
+      .button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.3s;
+        margin-top: 20px;
+      }
+
+      .button:hover {
+        background-color: #45a049;
+        transform: scale(1.1);
+      }
+      #result {
+        font-size: 1.2em;
+        color: #333;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Good Night! 🌙</h1>
+      <p>May your dreams be filled with peace and happiness. ✨</p>
+      <label for="wakeTime">Сэрэх цагаа оруулчих Маама👉 </label>
+      <input type="datetime-local" id="wakeTime" required />
+      <button class="button" onclick="calculateSleep()">Дараад үз</button>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function calculateSleep() {
+        var wakeTimeInput = document.getElementById("wakeTime").value;
+        var currentTime = new Date();
+
+        if (!wakeTimeInput) {
+          alert("Цагаа оруул миний хүү  ");
+          return;
+        }
+
+        var wakeTime = new Date(wakeTimeInput);
+
+        if (wakeTime <= currentTime) {
+          alert("Та хасах цаг унтах гээд байгаарай ижижиж XD");
+          return;
+        }
+
+        var difference = wakeTime - currentTime;
+
+        var hours = Math.floor(difference / (1000 * 60 * 60));
+        var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+
+        var result = "";
+
+        if (hours >= 9) {
+          result = "Воо болжин шүү xD 🤩 ";
+          result += " та " + hours + " цаг  ";
+          result += minutes > 0 ? minutes + " минут унтах нь ээ 😴" : "";
+        } else if (hours < 8) {
+          result = "Арай л бага уу 👻 ";
+          result += hours + " цаг  ";
+          result += minutes > 0 ? minutes + " минут унтах нь ээ 😴" : "";
+        } else if (8 < hours < 9) {
+          result = "Яг таарж байна шүү  ";
+          result += hours + " цаг  ";
+          result += minutes > 0 ? minutes + " минут унтах нь ээ 😴" : "";
+        }
+        document.getElementById("result").innerText = result;
+      }
+    </script>
+  </body>
+</html>
